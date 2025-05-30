@@ -4,10 +4,11 @@ security:
     providers:
         app_user_provider:
             entity:
-                class: App\Domain\Model\User
+                class: App\Domain\Model\Auth\User
                 property: username
     firewalls:
         main:
+            # TODO criar provider para cada evento do login
             provider: app_user_provider
             stateless: true
             json_login:

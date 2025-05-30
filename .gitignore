@@ -15,5 +15,5 @@
 ###< lexik/jwt-authentication-bundle ###
 
 ###> database-script ###
-/config/database/
+/config/database
 ###> database-script ###

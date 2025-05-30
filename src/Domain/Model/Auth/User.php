@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Model;
+namespace App\Domain\Model\Auth;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -14,12 +14,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private int $id;
-
     #[ORM\Column(name: 'email', type: 'string', length: 180, unique: true)]
     private string $username;
-
     #[ORM\Column(type: 'string')]
     private string $password;
+    #[ORM\ManyToOne(targetEntity: AccessProfile::class)]
+    #[ORM\JoinColumn(name: 'access_profile_id', referencedColumnName: 'id',nullable: false)]
+    private AccessProfile $accessProfile;
 
     public function getId(): int
     {
@@ -43,14 +44,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        $roles[] = 'ROLE_USER';
+        $roles = [];
+
+        foreach ($this->getAccessProfile()->getFuncionalities() as $role) {
+            $roles[] = $role->getRole();
+        }
 
         return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): void
-    {
-        $this->roles = $roles;
     }
 
     public function getPassword(): string
@@ -63,9 +63,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
     }
 
+    public function getAccessProfile(): AccessProfile
+    {
+        return $this->accessProfile;
+    }
+
+    public function setAccessProfile(AccessProfile $accessProfile): void
+    {
+        $this->accessProfile = $accessProfile;
+    }
+
     public function getUserIdentifier(): string
     {
-        return $this->email;
+        return $this->username;
     }
 
     public function eraseCredentials(): void
