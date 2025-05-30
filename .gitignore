@@ -10,3 +10,10 @@
 ###< symfony/framework-bundle ###
 
 .idea/
+###> lexik/jwt-authentication-bundle ###
+/config/security/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+###> database-script ###
+/config/database/
+###> database-script ###
