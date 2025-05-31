@@ -2,14 +2,14 @@
 
 namespace App\Domain\Model\Auth;
 
-use App\Domain\Model\CommomFields;
+use App\Domain\Model\Common\CommonFields;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'funcionality', schema: 'auth')]
 class Funcionality
 {
-    use CommomFields;
+    use CommonFields;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

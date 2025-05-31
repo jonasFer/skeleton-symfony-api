@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Domain\Model;
+namespace App\Domain\Model\Common;
 
 use Doctrine\ORM\Mapping as ORM;
 
-trait CommomFields
+trait CommonFields
 {
     #[ORM\Column(name: 'created_at', type: 'datetime', options: ['default' => 'CURRENT_TIMESTAMP'])]
     protected \DateTime $created;

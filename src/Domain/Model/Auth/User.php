@@ -2,7 +2,7 @@
 
 namespace App\Domain\Model\Auth;
 
-use App\Domain\Model\CommomFields;
+use App\Domain\Model\Common\CommonFields;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Table(name: 'user', schema: 'auth')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    use CommomFields;
+    use CommonFields;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

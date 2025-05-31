@@ -2,7 +2,7 @@
 
 namespace App\Domain\Model\Auth;
 
-use App\Domain\Model\CommomFields;
+use App\Domain\Model\Common\CommonFields;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'access_profile', schema: 'auth')]
 class AccessProfile
 {
-    use CommomFields;
+    use CommonFields;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
